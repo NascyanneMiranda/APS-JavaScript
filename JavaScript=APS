@@ -1,0 +1,35 @@
+// Função que verifica se um número é primo
+function ehPrimo(num) {
+    if (num <= 1) return false; // Números menores ou iguais a 1 não são primos
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false; // Se for divisível, não é primo
+    }
+    return true; // Se não encontrou divisores, é primo
+}
+
+// Função que encontra os N primeiros números primos a partir de um número fornecido
+function encontrarNPrimeirosPrimos(start, quantity) {
+    const primos = [];
+    let num = start;
+
+    while (primos.length < quantity) {
+        if (ehPrimo(num)) {
+            primos.push(num); // Adiciona o número à lista se for primo
+        }
+        num++; // Incrementa o número para verificar o próximo
+    }
+
+    return primos;
+}
+
+// Função principal
+function main(p0: number) {
+    const n = parseInt(prompt("Digite um número a partir do qual encontrar os 10 maiores primos:"));
+    const quantidade = 10; // Número fixo de primos a serem encontrados
+    const primosEncontrados = encontrarNPrimeirosPrimos(n, quantidade);
+
+    console.log(`Os ${quantidade} maiores números primos a partir de ${n} são: ${primosEncontrados.join(', ')}`);
+}
+
+// Executa a função principal
+main();
